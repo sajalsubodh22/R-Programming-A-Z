@@ -55,4 +55,28 @@ qplot(x = Income.Group, y = Internet.users, data = data, geom = "boxplot")
 #nrow(data[data["Internet.users"]>0 & data["Internet.users"]<5,])
 qplot(x = Internet.users, y = Birth.rate, data = data ,color = Income.Group, size=I(3))
 
-      
+
+#------------creating dataframe----------------#
+data2 <- cbind(Codes_2012_Dataset,Countries_2012_Dataset,Regions_2012_Dataset)
+head(data2)
+
+df <- data.frame(Countries_2012_Dataset,Codes_2012_Dataset,Regions_2012_Dataset) 
+head(df)
+colnames(df)<-c("Country","Code","Region")
+?merge
+df2 <- merge(data,df,by.x = c("Country.Name","Country.Code"),by.y = c("Country","Code"))  #merging dataframe
+head(df2)
+
+
+qplot(x = Internet.users, y = Birth.rate, data = df2, colour = Region, shape = I(18), alpha = 0.6
+                ,size = I(4), main = "Region wise BirthRate vs InternetUsers") #shape is 0-25
+
+# creating dataframe from matrix
+temp1 <- matrix(seq(1,9),nrow=3,ncol=3)
+temp1
+temp_df <- data.frame(temp1)
+temp_df
+?ggplot()
+?aes()
+?geom_smooth
+?facet_grid()
